@@ -28,30 +28,21 @@ def create_resized_mask(img, mask):
 
 def remove_water_mark(img, mask, radius=10, flag=cv.INPAINT_TELEA):
     t1 = time.time()
-    res = cv.inpaint(src=img, inpaintMask=mask, inpaintRadius=radius, flags=flag)
+    result = cv.inpaint(src=img, inpaintMask=mask, inpaintRadius=radius, flags=flag)
     t2 = time.time()
-
     print("it takes {}".format(t2 - t1))
-
-    # dst = cv.inpaint(img, mask, 10, cv.INPAINT_NS)
-    # dst = cv.inpaint(src=img, inpaintMask=inpaintMask, inpaintRadius=3, flags=cv.INPAINT_TELEA)
-
-    # im = Image.fromarray(res)
-    # cv.cvtColor(res, cv.COLOR_BGR2RGB)
-    # im.save("removed_{}".format(file_name))
-
-    rgbImg = cv.cvtColor(res, cv.COLOR_BGR2RGB)
-    return rgbImg
+    return result
 
 
 def main():
     file_name = sys.argv[1]
     mask_name = sys.argv[2]
 
-    img = cv.imread(file_name, 1)
+    img = cv.imread(file_name, cv.IMREAD_UNCHANGED)
     mask = cv.imread(mask_name, 0)
 
     result = remove_water_mark(img=img, mask=mask)
+
     cv.imwrite("removed_{}".format(file_name), result)
 
 
