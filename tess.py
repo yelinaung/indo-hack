@@ -14,8 +14,7 @@ def upscale(file_name):
 
 def extract_text(image):
     custom_oem_psm_config = r'--oem 3 --psm 6 -l eng'
-    result = pytesseract.image_to_string(image, config=custom_oem_psm_config)
-    return result
+    return pytesseract.image_to_string(image, config=custom_oem_psm_config)
 
 
 def main():

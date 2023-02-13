@@ -30,7 +30,7 @@ def remove_water_mark(img, mask, radius=10, flag=cv.INPAINT_TELEA):
     t1 = time.time()
     result = cv.inpaint(src=img, inpaintMask=mask, inpaintRadius=radius, flags=flag)
     t2 = time.time()
-    print("it takes {}".format(t2 - t1))
+    print(f"it takes {t2 - t1}")
     return result
 
 
@@ -43,7 +43,7 @@ def main():
 
     result = remove_water_mark(img=img, mask=mask)
 
-    cv.imwrite("removed_{}".format(file_name), result)
+    cv.imwrite(f"removed_{file_name}", result)
 
 
 # how to run
